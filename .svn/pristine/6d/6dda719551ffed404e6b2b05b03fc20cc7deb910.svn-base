@@ -1,0 +1,73 @@
+package ua.nure.danylenko.practice4;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Part3 {
+    public static void main(String[] args) throws IOException {
+        StringBuilder input = new StringBuilder();
+        try (BufferedReader in3 = new BufferedReader(new
+                InputStreamReader(
+         new FileInputStream("part3.txt"),"Cp1251"))){
+            String line;
+            while((line=in3.readLine())!=null){
+                input.append(line).append(System.lineSeparator());
+            }
+        }
+
+        Scanner s = new Scanner(System.in);
+        while (s.hasNextLine()) {
+            String line = s.nextLine();
+            if("stop".equals(line)) {
+                break;
+            }else{
+                System.out.print(defineDataType(line,input));
+                System.out.println();
+            }
+        }
+    }
+
+    private static String defineDataType(String line, StringBuilder input){
+        String regex;
+        Matcher m;
+        StringBuilder result = new StringBuilder();
+        if("String".equals(line)){
+            regex = "\\b[a-z\\u0430-\\u044f\\u0451\\u0439\\u0454\\u0456\\u0457]{2,}\\b";
+            m = Pattern.compile(regex).matcher(input);
+            while(m.find()){
+                result.append(m.group()).append(" ");
+            }
+        }else if("char".equals(line)){
+            regex = "(?iu)\\b[a-z\\u0430-\\u044f\\u0451\\u0439\\u0454\\u0456\\u0457]\\b";
+            m = Pattern.compile(regex).matcher(input);
+            while(m.find()){
+                result.append(m.group()).append(" ");
+            }
+        }else if("int".equals(line)){
+            regex = "\\s\\b(\\d+)\\b\\s";
+            m = Pattern.compile(regex).matcher(input);
+            while(m.find()){
+                result.append(m.group(1)).append(" ");
+            }
+        }else if("double".equals(line)){
+            regex = "\\d*\\.\\d*";
+            m = Pattern.compile(regex).matcher(input);
+            while(m.find()){
+                result.append(m.group()).append(" ");
+            }
+        }else{
+            result.append("Incorrect input");
+        }
+
+        if(result.length()==0){
+            result.append("No such values");
+        }
+
+        return result.toString();
+    }
+}

@@ -1,0 +1,49 @@
+package ua.nure.danylenko.practice4;
+
+import java.io.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Part1 {
+    public static void main(String[] args) throws IOException {
+       StringBuilder input = new StringBuilder();
+        try (BufferedReader in1 = new BufferedReader(new
+                InputStreamReader(
+                new FileInputStream("part1.txt"),"Cp1251"))) {
+
+            String line;
+            while ((line = in1.readLine()) != null) {
+                input.append(line).append(System.lineSeparator());
+            }
+        }
+
+        System.out.println(convert(input.toString()));
+
+    }
+
+    private static String convert(String input) {
+        StringBuffer result = new StringBuffer();
+        Pattern p = Pattern.compile("[A-Za-z\\u0430-\\u044f\\u0410-\\u042f\\u0454\\u0451\\u0439\\u0457\\u0456\\u0401\\u0404\\u0406\\u0407]{4,}");
+        Matcher m = p.matcher(input);
+        while(m.find()){
+
+            m.appendReplacement(result, changeCase(m.group()));
+        }
+        m.appendTail(result);
+
+         return result.toString();
+    }
+
+    private static String changeCase(String str){
+        StringBuilder sb = new StringBuilder();
+        char[] letters=str.toCharArray();
+        for(char ch: letters){
+            if(Character.isLowerCase(ch)){
+                sb.append(Character.toUpperCase(ch));
+            }else if(Character.isUpperCase(ch)){
+                sb.append(Character.toLowerCase(ch));
+            }
+        }
+        return sb.toString();
+    }
+}

@@ -1,0 +1,43 @@
+package ua.nure.danylenko.practice4;
+
+import java.io.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Part1 {
+    public static void main(String[] args) throws IOException {
+       StringBuilder input = new StringBuilder();
+        try (BufferedReader in1 = new BufferedReader(new
+                InputStreamReader(
+                new FileInputStream("part1.txt"),"Cp1251"))) {
+
+            String line;
+            while ((line = in1.readLine()) != null) {
+                input.append(line).append(System.lineSeparator());
+            }
+        }
+
+        System.out.println(convert(input.toString()));
+
+    }
+
+    private static String convert(String input) {
+        StringBuilder result = new StringBuilder();
+        int lettersCounter;
+        String regex = "(?m)(\\b([a-zà-ÿ¸éº³¿])+?\\b|\n)";
+        Matcher m = Pattern.compile(regex).matcher(input);
+        while(m.find()){
+            lettersCounter=m.group(1).length();
+            if(lettersCounter>3){
+                result.append(m.group(1).toUpperCase());
+            }else {
+                result.append(m.group(1));
+            }
+
+            if(m.group(1).charAt(lettersCounter-1)!='\n'){
+                result.append(" ");
+            }
+        }
+        return result.toString().substring(0,result.length()-2);
+    }
+}

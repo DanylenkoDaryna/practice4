@@ -1,0 +1,31 @@
+
+Y
+)src/ua/nure/danylenko/practice4/Demo.java,5\c\5c53130d54cea0ebc64d841090d58c4a9d6e4601
+@
+part2_sorted.txt,2\5\25044bedd28cf1058cf1575c9da115513d7306a9
+9
+	part1.txt,7\b\7be848738ab8dce2fb0e4e8b71f837b774912ce6
+Z
+*src/ua/nure/danylenko/practice4/Part1.java,4\c\4c1632ba62c6b263f9c9f92b3077d86cbe6ece46
+9
+	part2.txt,9\9\99646b8e2603ced0ec78bd68e5f78591746a6b93
+Z
+*src/ua/nure/danylenko/practice4/Part2.java,8\7\87d46d717d3ae51b3185afdb95c055dd69721110
+9
+	part3.txt,4\1\411f4830b9ec6db2ef203d6eac3fc0badcd74b56
+Z
+*src/ua/nure/danylenko/practice4/Part3.java,9\7\97ccfec29e4fca357897835cecae264317464ce2
+9
+	part4.txt,4\f\4f86d4d346bfe70f3560325dee2ad0675cebc9ba
+Z
+*src/ua/nure/danylenko/practice4/Part4.java,5\7\57e401ea7d407c3fec02895ef5f69673d3ee566b
+Z
+*src/ua/nure/danylenko/practice4/Part5.java,2\5\258deac3a23a677514bb8c18e222a86e0f24c481
+K
+src/resources_en.properties,3\f\3f7340275f8d2193f621868e2426c37c1e32b52c
+K
+src/resources_ru.properties,a\7\a732da51f2d9dad5cf8fecf0db45cc9d28233ee6
+9
+	part6.txt,7\5\7542a9b280d2cb345b32d45800c639a63c60576e
+Z
+*src/ua/nure/danylenko/practice4/Part6.java,b\2\b2d19ac1e6d4e0717db95606f920b074b892f3fe

@@ -1,0 +1,60 @@
+package ua.nure.danylenko.practice4;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Part6 {
+    public static void main(String[]args) throws IOException {
+        StringBuilder input = new StringBuilder();
+        try (BufferedReader in6 = new BufferedReader(new
+                InputStreamReader(
+                new FileInputStream("part6.txt"),"Cp1251"))){
+            String line;
+            while((line=in6.readLine())!=null){
+                input.append(line).append(System.lineSeparator());
+            }
+        }
+
+        Scanner s = new Scanner(System.in,"Cp1251");
+        while (s.hasNextLine()) {
+            String line = s.nextLine();
+            if(line.matches("[sS]top")) {
+                break;
+            }else{
+                System.out.println(defineSymbols(line, input));
+            }
+        }
+    }
+
+    private static String defineSymbols(String line, StringBuilder input){
+        String regex;
+        Matcher m;
+        StringBuilder result = new StringBuilder();
+        result.append(line).append(": ");
+        if(line.matches("[lL]atn")){
+            regex = "\\b[a-zA-Z]+\\b";
+            m = Pattern.compile(regex).matcher(input);
+            while(m.find()){
+                result.append(m.group()).append(" ");
+            }
+            return result.toString().substring(0,result.length()-1);
+        }else if(line.matches("[cC]yrl")){
+            regex = "\\b[\\u0430-\\u044f\\u0410-\\u042f\\u0454\\u0451\\u0439\\" +
+                    "u0457\\u0456\\u0401\\u0404\\u0406\\u0407]+\\b";
+            m = Pattern.compile(regex).matcher(input);
+            while(m.find()){
+                result.append(m.group()).append(" ");
+            }
+            return result.toString().substring(0,result.length()-1);
+        } else{
+            result.append("Incorrect input");
+        }
+
+        return result.toString();
+    }
+}

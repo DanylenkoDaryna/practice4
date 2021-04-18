@@ -1,0 +1,73 @@
+package ua.nure.danylenko.practice4;
+
+import java.io.*;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Part4 implements Iterable<String>{
+
+    private BufferedReader in4;
+    private StringBuilder result;
+
+    public Part4() throws IOException {
+        result=new StringBuilder();
+        in4 = new BufferedReader(new
+                InputStreamReader(
+                new FileInputStream("part4.txt"),"Cp1251"));
+        String line;
+        while((line=in4.readLine())!=null){
+            result.append(line).append(" ");
+        }
+    }
+
+    class IteratorImpl<String> implements Iterator<String> {
+
+       private final java.lang.String regex= "(?sm)\\p{javaUpperCase}[A-ZÀ-ßa-zà-ÿ¸é³¿ ,-]+\\b";
+       private String foundNext= null;
+       private Matcher m;
+
+        public IteratorImpl(){
+            m = Pattern.compile(regex).matcher(result);
+        }
+
+        @Override
+        public boolean hasNext() {
+                if(m.find()) {
+                    foundNext = (String) m.group();
+                    }else return false;
+            return foundNext!=null;
+        }
+
+        @Override
+        public String next() {
+                //String temp = (String) foundNext;
+                //foundNext = m.group();
+                return foundNext;
+
+        }
+
+        @Override
+        public void remove() {
+            throw new UnsupportedOperationException();
+        }
+    }
+
+    @Override
+    public Iterator<String> iterator() {
+        return new IteratorImpl();
+    }
+
+    public static void main(String[] args) throws IOException {
+
+       Part4 part4=new Part4();
+        StringBuilder input = new StringBuilder();
+
+           Iterator iterator = part4.iterator();
+           while (iterator.hasNext()) {
+               System.out.println(iterator.next());
+           }
+
+    }
+}
